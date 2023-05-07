@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>OnionShare Chat</title>
+  <link href="/static_yypirxxskvuxpeixbe43js4moq/img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" rel="subresource" type="text/css" href="/static_yypirxxskvuxpeixbe43js4moq/css/style.css" media="all">
+</head>
+
+<body>
+
+  <header class="clearfix">
+    <img class="logo" src="/static_yypirxxskvuxpeixbe43js4moq/img/logo.png" title="OnionShare">
+    <h1>OnionShare Chat</h1>
+  </header>
+  <noscript>
+    <p>
+      Chat <b>requires JavaScript</b>, so you must set your Tor Browser security
+      level to <b>Safer</b> or <b>Standard</b> to join.
+    </p>
+  </noscript>
+
+  <div class="chat-container no-js">
+    <div class="chat-users">
+      <div class="editable-username">
+        <label for="username">Your username:</label>
+        <input id="username" value="wafer-wisdo" />
+        <p id="username-error"></p>
+      </div>
+      <ul id="user-list">
+      </ul>
+    </div>
+    <div class="chat-wrapper">
+      <div id="chat"></div>
+
+      <div class="chat-form">
+        <input type="text" id="new-message" name="new-message" placeholder="Type your message" />
+      </div>
+
+    </div>
+  </div>
+  <script src="/static_yypirxxskvuxpeixbe43js4moq/js/jquery-3.5.1.min.js"></script>
+  <script src="/static_yypirxxskvuxpeixbe43js4moq/js/socket.io.min.js"></script>
+  <script async src="/static_yypirxxskvuxpeixbe43js4moq/js/chat.js"></script>
+</body>
+
+</html>
