@@ -1,7 +1,6 @@
 on: push
 jobs:
-    build-node
+    start-node
     runs-on: ubuntu-latest
     container: node:16
-    steps:
-        - run: npm install
+    steps: npm start
