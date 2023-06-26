@@ -1,6 +1,0 @@
-on: push
-jobs:
-    start-node
-    runs-on: ubuntu-latest
-    container: node:16
-    steps: npm start
