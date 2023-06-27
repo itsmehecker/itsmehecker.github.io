@@ -23,4 +23,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Add additional steps for your build/test process here
+      - name: Build and test
+        run: |
+          npm run build
+          npm test
+
+      - name: Start server
+        run: node server.js
