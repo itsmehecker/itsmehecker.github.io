@@ -23,23 +23,23 @@ services:
     ports:
       - "4000:4000"
     environment:
-      DB_HOST: pg
-      DB_PORT: 5432
-      DB_DATABASE: gqlserver
-      DB_USER: gqlserver
-      DB_PASSWORD: gqlserver
+  DB_HOST: pg
+  DB_PORT: 5432
+  DB_DATABASE: gqlserver
+  DB_USER: gqlserver
+  DB_PASSWORD: gqlserver
 
-      CACHE_HOST: rd
-      CACHE_PORT: 6379
-      CACHE_PASSWORD: gqlserver
-      
-      MINIO_ROOT_USER: gqlserver
-      MINIO_ROOT_PASSWORD: gqlserver
+  CACHE_HOST: rd
+  CACHE_PORT: 6379
+  CACHE_PASSWORD: gqlserver
 
-      ADMIN_EMAIL: admin@example.com
-      ADMIN_PASSWORD: gqlserver
+  MINIO_ROOT_USER: gqlserver
+  MINIO_ROOT_PASSWORD: gqlserver
 
-      SECRET_KEY: f2e85774-9a3b-46a5-8170-b40a05ead6ef
+  ADMIN_EMAIL: itsmehecker@proton.me
+  ADMIN_PASSWORD: gqlserver
+
+  SECRET_KEY: f2e85774-9a3b-46a5-8170-b40a05ead6ef
 
     depends_on:
       - redis
