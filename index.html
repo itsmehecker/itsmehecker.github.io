@@ -5,36 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My GitHub Repositories</title>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
+            color: #fff;
         }
         .container {
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+        .container {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
         h1 {
             text-align: center;
             color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
         }
         ul {
             list-style-type: none;
             padding: 0;
         }
         li {
-            margin: 10px 0;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        li.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         a {
             text-decoration: none;
             color: #007bff;
+            font-weight: bold;
         }
         a:hover {
             text-decoration: underline;
+        }
+        .repo-info {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            .repo-info {
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
@@ -57,11 +106,38 @@
                 link.target = '_blank';
                 link.textContent = repo.name;
                 listItem.appendChild(link);
+
+                const repoInfo = document.createElement('div');
+                repoInfo.className = 'repo-info';
+                repoInfo.textContent = `Stars: ${repo.stargazers_count} | Forks: ${repo.forks_count} | Updated: ${new Date(repo.updated_at).toLocaleDateString()}`;
+                listItem.appendChild(repoInfo);
+
                 repoList.appendChild(listItem);
             });
+
+            // Make all list items visible after they are added
+            const listItems = repoList.getElementsByTagName('li');
+            for (let i = 0; i < listItems.length; i++) {
+                listItems[i].classList.add('visible');
+            }
         }
 
         fetchRepositories();
+
+        window.addEventListener('scroll', () => {
+            const repoList = document.getElementById('repo-list');
+            const repos = repoList.getElementsByTagName('li');
+            const windowHeight = window.innerHeight;
+            for (let i = 0; i < repos.length; i++) {
+                const repo = repos[i];
+                const rect = repo.getBoundingClientRect();
+                if (rect.top >= 0 && rect.bottom <= windowHeight) {
+                    repo.classList.add('visible');
+                } else {
+                    repo.classList.remove('visible');
+                }
+            }
+        });
     </script>
 </body>
 </html>
